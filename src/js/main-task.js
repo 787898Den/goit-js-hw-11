@@ -1,11 +1,6 @@
 import { Notify } from "notiflix/build/notiflix-notify-aio";
-
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-
-
-
-
 import ServiceAPI from './service-api';
 import markup from './markup';
 
@@ -41,14 +36,14 @@ let galleryLightBox = new SimpleLightbox('.gallery a', options.simpleLightBox);
 
 function onFormSubmit(e) {
   e.preventDefault();
-
-  const isFilled = e.currentTarget.elements.searchQuery.value;
+  const isFilled = e.currentTarget.elements.searchQuery.value.trim();
   if (isFilled) {
     searchButton.disabled = true;
     loadService.searchQuery = isFilled;
     loadService.resetPage();
     gallery.innerHTML = '';
     loadPictures();
+    form.reset();
   }
 }
 
